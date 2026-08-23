@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useTheme } from "../context/ThemeContext.jsx";
@@ -6,11 +7,12 @@ import NotificationBell from "./NotificationBell.jsx";
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const [open, setOpen] = useState(false);
 
   return (
     <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-700">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-16 relative">
           <div className="flex items-center space-x-8">
             <NavLink
               to="/tickets"
@@ -57,7 +59,7 @@ export default function Navbar() {
               </NavLink>
             </div>
           </div>
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <NotificationBell />
             <button
               onClick={toggleTheme}
@@ -96,20 +98,100 @@ export default function Navbar() {
                 </svg>
               )}
             </button>
-            <div className="text-sm text-slate-600 dark:text-slate-300">
+            <span className="hidden sm:inline text-sm text-slate-600 dark:text-slate-300">
               <span className="font-medium">{user.name}</span>
               <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200">
                 {user.role === "agente" ? "Agente" : "Cliente"}
               </span>
-            </div>
+            </span>
             <button
               onClick={logout}
+              className="hidden sm:inline text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
+            >
+              Cerrar sesión
+            </button>
+            <button
+              onClick={() => setOpen((prev) => !prev)}
+              className="md:hidden p-2 rounded-full text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100"
+              aria-label="Abrir menú"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        {open && (
+          <div className="md:hidden border-t border-slate-200 dark:border-slate-700 px-4 py-3 space-y-2">
+            <NavLink
+              to="/tickets"
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `block text-sm font-medium ${isActive ? "text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"}`
+              }
+            >
+              Todos los tickets
+            </NavLink>
+            <NavLink
+              to="/tickets/nuevo"
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `block text-sm font-medium ${isActive ? "text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"}`
+              }
+            >
+              Nuevo ticket
+            </NavLink>
+            {user?.role === "agente" && (
+              <NavLink
+                to="/dashboard"
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `block text-sm font-medium ${isActive ? "text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"}`
+                }
+              >
+                Dashboard
+              </NavLink>
+            )}
+            <NavLink
+              to="/perfil"
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `block text-sm font-medium ${isActive ? "text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"}`
+              }
+            >
+              Perfil
+            </NavLink>
+
+            <button
+              onClick={() => {
+                logout();
+                setOpen(false);
+              }}
               className="text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 font-medium"
             >
               Cerrar sesión
             </button>
+            <div className="pt-2 flex items-center gap-2">
+              <span className="text-sm text-slate-600 dark:text-slate-300">
+                <span className="font-medium">{user.name}</span>
+                <span className="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200">
+                  {user.role === "agente" ? "Agente" : "Cliente"}
+                </span>
+              </span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </nav>
   );

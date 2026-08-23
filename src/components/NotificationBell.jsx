@@ -60,7 +60,7 @@ export default function NotificationBell() {
   }
 
   return (
-    <div className="relative" ref={ref}>
+    <div ref={ref}>
       <button
         onClick={handleOpen}
         className="relative p-2 rounded-full text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100"
@@ -75,7 +75,7 @@ export default function NotificationBell() {
         )}
       </button>
       {open && (
-        <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
+        <div className="absolute left-4 right-4 sm:left-auto sm:right-0 sm:w-80 mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
           <div className="px-4 py-3 border-b border-slate-200 dark:border-slate-700">
             <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">Notificaciones</h3>
           </div>

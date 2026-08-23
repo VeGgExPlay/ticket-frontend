@@ -572,25 +572,25 @@ export default function TicketList() {
                 ? "Cargando..."
                 : `Mostrando ${showingFrom}-${showingTo} de ${total_count} tickets`}
             </p>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1 || loading}
-                className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 text-slate-700 dark:text-slate-300"
-              >
-                Anterior
-              </button>
-              <span className="text-sm text-slate-600 dark:text-slate-300">
-                Página {page} de {totalPages}
-              </span>
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages || loading}
-                className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 text-slate-700 dark:text-slate-300"
-              >
-                Siguiente
-              </button>
-            </div>
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1 || loading}
+              className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 text-slate-700 dark:text-slate-300"
+            >
+              Anterior
+            </button>
+            <span className="text-sm text-slate-600 dark:text-slate-300">
+              Página {page} de {totalPages}
+            </span>
+            <button
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages || loading}
+              className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-md hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 text-slate-700 dark:text-slate-300"
+            >
+              Siguiente
+            </button>
+          </div>
           </div>
           {error && (
             <p className="text-sm text-red-600 bg-red-50 dark:bg-red-900/20 p-3 rounded mb-4">

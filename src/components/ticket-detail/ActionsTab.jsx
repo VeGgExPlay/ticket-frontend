@@ -19,7 +19,7 @@ export default function ActionsTab({
 }) {
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-[max-content_1fr_max-content] items-center gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-[max-content_1fr_max-content] items-center gap-3">
         <form onSubmit={onStatusChange} className="contents">
           <label className="text-sm font-medium text-slate-700 dark:text-slate-300 whitespace-nowrap">
             Cambiar estado:

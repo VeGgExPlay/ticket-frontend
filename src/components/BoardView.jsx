@@ -19,7 +19,7 @@ const COLUMNS = [
 function Column({ id, label, tickets, children, columnRef }) {
   const { setNodeRef, isOver } = useDroppable({ id });
   return (
-    <div ref={columnRef} className="flex-1 min-w-[260px]">
+    <div ref={columnRef} className="flex-1 min-w-[260px] w-[85vw] sm:w-auto">
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wide">
           {label}
@@ -159,7 +159,7 @@ export default function BoardView() {
           <button
             type="button"
             onClick={() => scrollByColumn(-1)}
-            className="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 shadow text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
+            className="flex absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 shadow text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
             aria-label="Anterior"
           >
             <svg
@@ -182,7 +182,7 @@ export default function BoardView() {
           <button
             type="button"
             onClick={() => scrollByColumn(1)}
-            className="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 shadow text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
+            className="flex absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 items-center justify-center rounded-full bg-white/90 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 shadow text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100"
             aria-label="Siguiente"
           >
             <svg

@@ -384,20 +384,12 @@ export default function TicketDetail() {
       <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
         <TicketSidebar ticket={data.ticket} history={history} />
         <div className="space-y-4">
-          <div className="flex flex-col gap-2 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
-            <div className="flex items-start justify-between">
-              <div className="flex flex-row gap-2 items-center justify-center">
-                <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  {data.ticket.title}
-                </h1>
-                {/* <div className="flex flex-row gap-4 items-center text-xs text-slate-400 dark:text-slate-500">
-                  <span>Cliente ID: {data.ticket.client_id}</span>
-                  {data.ticket.agent_id && (
-                    <span>Agente: {agent ? agent.name : "Sin agente"}</span>
-                  )}
-                </div> */}
-              </div>
-              <div className="flex items-center space-x-2">
+          <div className="flex flex-col gap-3 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+              <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100 break-words">
+                {data.ticket.title}
+              </h1>
+              <div className="flex flex-wrap items-center gap-2">
                 <span
                   className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusInfo.color}`}
                 >
@@ -431,11 +423,11 @@ export default function TicketDetail() {
               </div>
             </div>
 
-            <div className="flex flex-row justify-between items-center">
-              <p className="text-sm text-slate-600 dark:text-slate-300 whitespace-pre-wrap">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+              <p className="text-sm text-slate-600 dark:text-slate-300 whitespace-pre-wrap break-words">
                 {data.ticket.description}
               </p>
-              <span className="text-xs text-slate-400 dark:text-slate-500">
+              <span className="text-xs text-slate-400 dark:text-slate-500 whitespace-nowrap">
                 {new Date(data.ticket.created_at).toLocaleString("es-ES")}
               </span>
             </div>

@@ -128,7 +128,7 @@ function AgentBarChart({ byAgent }) {
   }
 
   return (
-    <div className="max-h-80">
+    <div className="h-72">
       <Bar
         key={chartKey}
         data={data}
@@ -384,7 +384,7 @@ export default function Dashboard() {
           </p>
         </div>
       </div>
-      <div className="space-y-6 mb-6 grid grid-cols-2 grid-rows-[repeat(auto-fit, minmax(0, 1fr))]">
+      <div className="space-y-6 mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="col-span-full row-start-1 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-5 mx-auto lg:mx-0">
           <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100 mb-4">
             Por estado

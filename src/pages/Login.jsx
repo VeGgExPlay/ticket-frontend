@@ -21,7 +21,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900 px-4">
       <div className="w-full max-w-md bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-8">
         <h1 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">Iniciar sesión</h1>
         <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Accede a tu cuenta para gestionar tickets.</p>
