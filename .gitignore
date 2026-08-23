@@ -1,0 +1,29 @@
+# Dependencias
+node_modules/
+
+# Build de vite
+dist/
+dist-ssr/
+.vite
+*.local
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Tests
+coverage/
+
+# Editor / SO
+.DS_Store
+*.swo
+.idea/
+.vscode/*
+!.vscode/extensions.json
