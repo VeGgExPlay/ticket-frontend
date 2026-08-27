@@ -57,6 +57,13 @@ export default function Login() {
         <p className="mt-4 text-sm text-center text-slate-500 dark:text-slate-400">
           ¿No tienes cuenta? <Link to="/register" className="font-medium text-slate-900 dark:text-slate-100 hover:underline">Regístrate</Link>
         </p>
+
+        <div className="mt-4 p-3 bg-slate-50 dark:bg-slate-700/50 rounded text-xs text-slate-500 dark:text-slate-400">
+          <p className="font-medium mb-1">Credenciales demo:</p>
+          <p>agente1@demo.local / demo123</p>
+          <p>agente2@demo.local / demo123</p>
+          <p>usuariodemo@demo.local / demo123</p>
+        </div>
       </div>
     </div>
   );
