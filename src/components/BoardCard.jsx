@@ -1,6 +1,7 @@
 import { useDraggable } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
 
 const STATUS_MAP = {
@@ -26,6 +27,9 @@ const PRIORITY_MAP = {
 export default function BoardCard({ ticket, agentName }) {
   const { user } = useAuth();
   const isAgent = user?.role === 'agente';
+  const navigate = useNavigate();
+  const wasDraggingRef = useRef(false);
+
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: `ticket-${ticket.id}`,
     data: { ticket },
@@ -44,11 +48,30 @@ export default function BoardCard({ ticket, agentName }) {
   const cat = CATEGORY_MAP[ticket.category];
   const pri = PRIORITY_MAP[ticket.priority];
 
+  const handleCardClick = () => {
+    if (wasDraggingRef.current) {
+      wasDraggingRef.current = false;
+      return;
+    }
+    navigate(`/tickets/${ticket.id}`);
+  };
+
+  useEffect(() => {
+    const node = setNodeRef.current;
+    if (!node || !isAgent) return;
+    const handler = () => {
+      wasDraggingRef.current = true;
+    };
+    node.addEventListener('dragend', handler);
+    return () => node.removeEventListener('dragend', handler);
+  }, [isAgent, setNodeRef]);
+
   const content = (
     <div
       ref={setNodeRef}
       style={style}
       {...(isAgent ? { ...listeners, ...attributes } : {})}
+      onClick={isAgent ? handleCardClick : undefined}
       className={`bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-4 cursor-default ${isAgent ? 'cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow' : 'opacity-90'}`}
     >
       <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-1">{ticket.title}</h3>
@@ -64,8 +87,5 @@ export default function BoardCard({ ticket, agentName }) {
     </div>
   );
 
-  if (isAgent) {
-    return <Link to={`/tickets/${ticket.id}`} className="block">{content}</Link>;
-  }
   return content;
 }
